@@ -43,7 +43,6 @@ def add_user():
 def update_user(user_id):
     name = request.form.get("username")
     psw = request.form.get("password")
-    print(name, psw)
     sql = f"update users set username = '{name}', password = '{psw}' where id = {user_id};"
     cur.execute(sql)
 
@@ -55,7 +54,7 @@ def update_user(user_id):
 
 @user.route('/<user_id>', methods=["DELETE"])
 def delete_user(user_id):
-    cur.execute(f"delete from users where id = {user_id}")
+    cur.execute(f"delete from users where id = {user_id};")
     return jsonify({
         "code": 200,
         "data": user_id,
